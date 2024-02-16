@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Root() {
   console.log(import.meta.env);
   return (
@@ -7,10 +9,10 @@ export default function Root() {
         <nav>
           <ul>
             <li>
-              <a href={`/contacts/1`}>Your Name</a>
+              <Link to={`/contacts/1`}>Your Profile</Link>
             </li>
             <li>
-              <a href={`/contacts/2`}>Your Friend</a>
+              <Link to={`/contacts/2`}>Your Friends</Link>
             </li>
           </ul>
         </nav>
