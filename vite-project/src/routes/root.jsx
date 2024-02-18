@@ -1,23 +1,40 @@
-import { Link } from "react-router-dom";
+import ButtonAppBar from "../components/Appbar.tsx";
+import BasicCard from "../components/Card";
+import Box from "@mui/material/Box";
+import List from "../components/List";
+import { Button, Divider } from "@mui/material";
+import axios from "axios";
 
 export default function Root() {
-  console.log(import.meta.env);
+  const getSales = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/sales");
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <>
-      <div id="sidebar">
-        <h1>React Router Contacts</h1>
-        <nav>
-          <ul>
-            <li>
-              <Link to={`/contacts/1`}>Your Profile</Link>
-            </li>
-            <li>
-              <Link to={`/contacts/2`}>Your Friends</Link>
-            </li>
-          </ul>
-        </nav>
+    <Box
+      sx={{
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "grey",
+      }}
+    >
+      <div>
+        <ButtonAppBar />
+        <BasicCard />
+        <Box sx={{ my: 1 }} />
+        <List />
+        <Button variant="contained" onClick={getSales}>
+          Get Sales
+        </Button>
       </div>
-      <div id="detail"></div>
-    </>
+    </Box>
   );
 }
