@@ -1,18 +1,23 @@
-import ButtonAppBar from "../components/Appbar.tsx";
-import BasicCard from "../components/Card";
+import ButtonAppBar from "../components/Appbar.js";
+import BasicCard from "../components/Card.jsx";
 import Box from "@mui/material/Box";
-import List from "../components/List";
+import List from "../components/List.jsx";
 import { Button } from "@mui/material";
-import axios from "axios";
+import { createTRPCProxyClient, httpLink } from "@trpc/client";
+import type { AppRouter } from "../../../server/index.js";
+
+const trpc = createTRPCProxyClient<AppRouter>({
+  links: [
+    httpLink({
+      url: "http://localhost:4000/trpc",
+    }),
+  ],
+});
 
 export default function Root() {
   const getSales = async () => {
-    try {
-      const response = await axios.get("http://localhost:3001/sales");
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+    const sales = await trpc.getSales.query();
+    console.log(sales);
   };
 
   return (
