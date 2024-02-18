@@ -1,7 +1,9 @@
-const express = require("express");
-const app = express();
+import express, { Express } from "express";
+import salesRoutes from "./routes";
+
+const app: Express = express();
+
 const bodyParser = require("body-parser");
-// const { MongoClient, ServerApiVersion } = require("mongodb");
 const mongoose = require("mongoose");
 var cors = require("cors");
 
@@ -15,10 +17,10 @@ app.use(cors());
 mongoose
   .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.log(err));
+  .catch((err: any) => console.log(err));
 
-require("./routes")(app, {});
+salesRoutes(app, {});
 
 app.listen(PORT, () => {
-  console.log("We are live on " + PORT);
+  console.log("We are live on " + PORT + "With Typescript!");
 });

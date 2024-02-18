@@ -2,7 +2,7 @@ import ButtonAppBar from "../components/Appbar.tsx";
 import BasicCard from "../components/Card";
 import Box from "@mui/material/Box";
 import List from "../components/List";
-import { Button, Divider } from "@mui/material";
+import { Button } from "@mui/material";
 import axios from "axios";
 
 export default function Root() {
